@@ -90,9 +90,13 @@ public class Graph {
     }
 
     public void topologicalVisited(GraphNode node, Stack<GraphNode> stack){
-
-
-
+        for(GraphNode neighbor : node.neighbors ){
+            if(!neighbor.isVisited){
+                topologicalVisited(neighbor, stack);
+            }
+        }
+        node.isVisited = true;
+        stack.push(node);
     }
 
 
@@ -103,6 +107,11 @@ public class Graph {
             if(!node.isVisited){
                 topologicalVisited(node, stack);
             }
+        }
+
+        while(!stack.isEmpty()){
+            GraphNode currNode = stack.pop();
+            System.out.print(currNode.name+" ");
         }
     }
 
