@@ -10,17 +10,19 @@ public class Main {
         nodeList.add(new GraphNode("E",4));
         nodeList.add(new GraphNode("F",5));
         nodeList.add(new GraphNode("G",6));
-        nodeList.add(new GraphNode("H",7));
         Graph g = new Graph(nodeList);
-        g.addDirectedEdge(0,2);
-        g.addDirectedEdge(1,2);
-        g.addDirectedEdge(1,3);
-        g.addDirectedEdge(2,4);
-        g.addDirectedEdge(3,5);
-        g.addDirectedEdge(4,7);
-        g.addDirectedEdge(4,5);
-        g.addDirectedEdge(5,6);
+
+        g.addUndirectionalEdge(0,1);
+        g.addUndirectionalEdge(0,2);
+        g.addUndirectionalEdge(1,3);
+        g.addUndirectionalEdge(1,6);
+        g.addUndirectionalEdge(2,3);
+        g.addUndirectionalEdge(2,4);
+        g.addUndirectionalEdge(3,5);
+        g.addUndirectionalEdge(4,5);
+        g.addUndirectionalEdge(5,6);
+
         System.out.println(g.toString());
-        g.tls();
+        g.bfsSsp(nodeList.get(4));
     }
 }

@@ -135,23 +135,20 @@ public class Graph {
     public void bfsSsp(GraphNode node){
         Queue<GraphNode> q = new LinkedList<GraphNode>();
         q.add(node);
-
         while(!q.isEmpty()){
-            node.isVisited = true;
-            for(GraphNode neighbor : node.neighbors){
-                if (!neighbor.isVisited && !q.contains(neighbor)){
+            GraphNode currNode = q.remove();
+            currNode.isVisited = true;
+            System.out.print("The following is the path for "+currNode.name+": ");
+            pathPrint(currNode);
+            System.out.println();
+            for(GraphNode neighbor : currNode.neighbors){
+                if (!neighbor.isVisited){
+                    neighbor.parent = currNode;
                     q.add(neighbor);
-                    neighbor.parent = node;
+                    neighbor.isVisited = true;
                 }
             }
 
         }
     }
-
-    public void ssp(){
-
-    }
-
-
-
 }
