@@ -33,6 +33,9 @@ public class Graph {
         s.append("\n");
         return s.toString();
     }
+
+
+//  Breadth first search
     public void bfsVisit(GraphNode node){
       Queue<GraphNode> q = new LinkedList<GraphNode>();
       q.add(node);
@@ -56,6 +59,10 @@ public class Graph {
             bfsVisit(node);
         }
     }
+
+
+
+//  Depth first search
     public void dfsVisit(GraphNode node){
         Stack<GraphNode> s = new Stack<GraphNode>();
         s.push(node);
@@ -83,12 +90,13 @@ public class Graph {
     }
 
 
+
+// Topological Sort
     public void addDirectedEdge(int i, int j){
         GraphNode first = nodeList.get(i);
         GraphNode second = nodeList.get(j);
         first.neighbors.add(second);
     }
-
     public void topologicalVisited(GraphNode node, Stack<GraphNode> stack){
         for(GraphNode neighbor : node.neighbors ){
             if(!neighbor.isVisited){
@@ -98,8 +106,6 @@ public class Graph {
         node.isVisited = true;
         stack.push(node);
     }
-
-
     public void tls(){
         Stack<GraphNode> stack = new Stack<GraphNode>();
 
@@ -113,6 +119,37 @@ public class Graph {
             GraphNode currNode = stack.pop();
             System.out.print(currNode.name+" ");
         }
+    }
+
+//    BFS ssspp
+
+
+    public void pathPrint(GraphNode node){
+        if(node.parent != null){
+            pathPrint(node.parent);
+        }
+        System.out.print(node.name+" ");
+    }
+
+
+    public void bfsSsp(GraphNode node){
+        Queue<GraphNode> q = new LinkedList<GraphNode>();
+        q.add(node);
+
+        while(!q.isEmpty()){
+            node.isVisited = true;
+            for(GraphNode neighbor : node.neighbors){
+                if (!neighbor.isVisited && !q.contains(neighbor)){
+                    q.add(neighbor);
+                    neighbor.parent = node;
+                }
+            }
+
+        }
+    }
+
+    public void ssp(){
+
     }
 
 
